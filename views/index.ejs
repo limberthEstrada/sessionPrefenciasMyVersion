@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio 1</title>
+</head>
+<body style="background-color: <%= locals.usuarioSaludo ? locals.usuarioSaludo.color: (locals.colorAux ? colorAux: "") %>">
+    <% if ((locals.usuarioSaludo != undefined) && (locals.usuarioSaludo.nombre != undefined) && (locals.usuarioSaludo.email != undefined) && (locals.usuarioSaludo.color != undefined) && (locals.usuarioSaludo.edad != undefined)) { %>
+        <hr>
+        <blockquote>Hola <%= locals.usuarioSaludo.nombre %> , elegiste el color: <%= locals.usuarioSaludo.color %>, tu email es:
+            <%= locals.usuarioSaludo.email %>  y tu edad es: <%= locals.usuarioSaludo.edad %></blockquote>
+        <hr>
+            <% } %>
+        
+
+
+    <form action="/" method="post">
+        <label for="">Ingrese su nombre</label>
+        <input type="text" name="nombre" value="<%= locals.oldData ? oldData.nombre : null %>"><br>
+        <% if (locals.errores && errores.nombre) { %>
+            <p style="color: red;"><%= errores.nombre.msg %> </p>
+        <% } %>
+        <label for="">Selecciona un color bb: </label>
+        <select name="color" id="">
+            <% let colores = ["red", "yellow", "blue", "black", "orange", "green", "white", "lightgreen"] %> 
+            <option value="">Elegi</option>
+        <% for(oneColor of colores) { %>
+            <option value="<%= oneColor %>" <%= locals.oldData && oneColor==oldData.color ? 'selected': null %> ><%= oneColor %> </option>
+        <% } %>
+        </select><br>
+        <% if (locals.errores && errores.color) { %>
+            <p style="color: red;"><%= errores.color.msg %> </p>
+        <% } %>
+        <label for="">E-mail</label>
+        <input type="text" name="email" value="<%= locals.oldData ? oldData.email : null %>"><br>
+        <% if (locals.errores && errores.email) { %>
+            <p style="color: red;"><%= errores.email.msg %> </p>
+        <% } %>
+        <label for="">Edad</label>
+        <input type="text" name="edad" value="<%= locals.oldData ? oldData.edad : null %>"><br>
+        <% if (locals.errores && errores.edad) { %>
+            <p style="color: red;"><%= errores.edad.msg %> </p>
+        <% } %>
+        <label for="">Recordar color</label>
+        <input type="checkbox" name="recordarColor"><br>
+        
+        <button type="submit">Enviar</button>
+    </form>
+    <a href="/borrarColor"><button type="type" name="olvidarColor">Olvidar color</button></a><br>
+</body>
+</html>

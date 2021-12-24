@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio 2</title>
+</head>
+<body style="background-color: <%= locals.usuarioSaludo ? locals.usuarioSaludo.color: (locals.colorAux ? colorAux: "") %>">
+    <% if ((locals.colorAux) && (!locals.usuarioSaludo)) { %>
+        <p>No hay nadie logeado, pero se mantiene la preferencia de idioma</p>
+    <% } else{ %>
+    <p>No hay nadie logeado</p>
+    <% } %>
+    <% if (locals.usuarioSaludo != undefined) { %>
+        <hr>
+        <blockquote>Hola <%= locals.usuarioSaludo.nombre %>, gracias por visitarnos!</blockquote>
+        <hr>
+            <% } %>
+        
+</body>
+</html>
